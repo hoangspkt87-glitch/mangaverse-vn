@@ -1,7 +1,27 @@
 {
   "version": 2,
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "db/**",
+      "maxDuration": 30
+    }
+  },
   "rewrites": [
-    { "source": "/v1/api/(.*)", "destination": "/api/index.js" },
-    { "source": "/api/(.*)", "destination": "/api/index.js" }
+    { "source": "/v1/api/:path*", "destination": "/api/index.js" },
+    { "source": "/api/:path*", "destination": "/api/index.js" },
+    { "source": "/proxy-nt/:path*", "destination": "https://nhattruyenqq.com/:path*" },
+    { "source": "/proxy-nt-img1/:path*", "destination": "https://v1.beercloudy.com/:path*" },
+    { "source": "/proxy-nt-img2/:path*", "destination": "https://v2.beercloudy.com/:path*" },
+    { "source": "/proxy-nt-img3/:path*", "destination": "https://v3.beercloudy.com/:path*" },
+    { "source": "/proxy-nt-img4/:path*", "destination": "https://v4.beercloudy.com/:path*" },
+    { "source": "/proxy-tqq/:path*", "destination": "https://truyenqq.cx/:path*" },
+    { "source": "/proxy-ot-img/:path*", "destination": "https://sv1.otruyencdn.com/:path*" },
+    { "source": "/proxy-ct-api/:path*", "destination": "https://cuutruyen.net/api/v2/:path*" },
+    { "source": "/proxy-ct2-api/:path*", "destination": "https://hetcuutruyen.net/api/v2/:path*" },
+    { "source": "/proxy-ct-img/:path*", "destination": "https://storage-ct.lrclib.net/:path*" },
+    { "source": "/proxy-md-api/:path*", "destination": "https://api.mangadex.org/:path*" },
+    { "source": "/proxy-md-img/:path*", "destination": "https://uploads.mangadex.org/:path*" },
+    { "source": "/proxy-mp/:path*", "destination": "https://mangapill.com/:path*" },
+    { "source": "/proxy-mp-img/:path*", "destination": "https://cdn.readdetectiveconan.com/:path*" }
   ]
 }

@@ -1,3 +1,9 @@
+const path = require('path');
+// Ensure Vercel NFT bundler traces and includes the 98,344-chapter database
+try {
+  require(path.join(__dirname, '..', 'db', 'synced-manga.json'));
+} catch (_) {}
+
 const netlifyFn = require('../netlify/functions/api');
 
 module.exports = async (req, res) => {
