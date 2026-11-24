@@ -330,16 +330,16 @@ class MangaCrawlerSyncEngine {
 
   loadDatabase() {
     try {
-      if (!fs.existsSync(DB_DIR)) {
-        fs.mkdirSync(DB_DIR, { recursive: true });
-      }
+      let parsed = null;
       if (fs.existsSync(DB_FILE)) {
         const raw = fs.readFileSync(DB_FILE, 'utf8');
-        const parsed = JSON.parse(raw);
-        if (parsed && parsed.mangas) {
-          this.db = parsed;
-          this.recalculateStats();
-        }
+        parsed = JSON.parse(raw);
+      } else {
+        parsed = require('./db/synced-manga.json');
+      }
+      if (parsed && parsed.mangas) {
+        this.db = parsed;
+        this.recalculateStats();
       }
     } catch (err) {
       console.warn('[SyncDB Load Warning]:', err.message);

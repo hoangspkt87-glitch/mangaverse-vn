@@ -283,6 +283,15 @@ class MangaVerseApp {
       if (json?.data?.APP_DOMAIN_CDN_IMAGE) {
         this.cdnDomain = json.data.APP_DOMAIN_CDN_IMAGE.replace(/\/+$/, '');
       }
+      // If online serverless function returned empty NetTruyen list (due to Cloudflare blocking foreign IP),
+      // automatically enrich from window.SYNCED_MANGA_SEED right in the browser!
+      if (Array.isArray(json?.data?.items) && json.data.items.length === 0 && window.SYNCED_MANGA_SEED?.items?.length) {
+        const edgeFallback = await this.netlifyEdgeFetch(endpoint).catch(() => null);
+        if (edgeFallback?.data?.items?.length) {
+          if (useCache) this.apiCache.set(url, edgeFallback);
+          return edgeFallback;
+        }
+      }
       if (useCache) {
         this.apiCache.set(url, json);
       }
@@ -333,9 +342,7 @@ class MangaVerseApp {
    */
   rewriteProxyImageForEdge(rawOrProxied) {
     if (!rawOrProxied) return '';
-    const isLocalhost =
-      window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    if (isLocalhost && !this.isNetlifyEdgeMode) {
+    if (!this.isNetlifyEdgeMode) {
       return rawOrProxied;
     }
 

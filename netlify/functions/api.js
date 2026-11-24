@@ -292,7 +292,7 @@ async function fetchNetTruyenChapterPages(rawCompoundId) {
   const clean = String(rawCompoundId).replace(/^nt-/, '');
   const [comicSlug, chapSlug] = clean.split('__');
   const targetUrl = `${NETTRUYEN_BASE}/truyen-tranh/${encodeURIComponent(comicSlug)}/${encodeURIComponent(chapSlug || 'chuong-1')}`;
-  const html = await cachedFetchText(targetUrl, { Referer: `${NETTRUYEN_BASE}/` });
+  const html = await cachedFetchText(targetUrl, { Referer: `${NETTRUYEN_BASE}/` }).catch(() => '');
 
   const pageBlocks = [...html.matchAll(/<div[^>]+class=["'][^"']*page-chapter[^"']*["'][^>]*>[\s\S]*?<img[^>]+>/gi)].map((m) => m[0]);
   const urls = [];
@@ -308,6 +308,14 @@ async function fetchNetTruyenChapterPages(rawCompoundId) {
       if (u.startsWith('//')) u = `https:${u}`;
       if (u.startsWith('http')) urls.push(u);
     }
+  }
+
+  // Automatic failover to TruyenQQ / OTruyen CDN mirror when foreign cloud IPs are geo-blocked by NetTruyen
+  if (urls.length === 0) {
+    const tqqChapSlug = String(chapSlug || 'chuong-1').replace(/^chuong-/i, 'chapter-');
+    try {
+      return await fetchTruyenQQChapterPages(`tqq-${comicSlug}__${tqqChapSlug}`);
+    } catch (_) {}
   }
 
   const chapter_image = urls.map((u, idx) => {
