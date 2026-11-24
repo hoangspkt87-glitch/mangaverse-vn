@@ -1,9 +1,10 @@
 services:
   - type: web
     name: mangaverse-vn
-    env: node
+    runtime: node
+    region: singapore
     plan: free
-    buildCommand: echo "No build step required"
+    buildCommand: echo "MangaVerse VN v5.5 Ready"
     startCommand: node server.js
     envVars:
       - key: NODE_VERSION
