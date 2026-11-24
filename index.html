@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MangaVerse VN — Kho Truyện Tranh Tiếng Việt Miễn Phí (6,700+ Bộ)</title>
+  <meta name="description" content="Website đọc truyện tranh Manga, Manhwa, Manhua, Webtoon Tiếng Việt miễn phí với bộ lọc đa tiêu chí thông minh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'],
+            display: ['"Space Grotesk"', '"Be Vietnam Pro"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#080c14] dark:text-slate-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white transition-colors duration-200">
+
+  <!-- TOP READING PROGRESS BAR (Only visible inside Reader View) -->
+  <div id="reader-top-progress-wrap" class="fixed top-0 left-0 right-0 h-1 bg-slate-800/80 z-[70] hidden">
+    <div id="reader-top-progress-bar" class="h-full bg-gradient-to-r from-brand-500 via-rose-400 to-amber-400 w-0 transition-all duration-150"></div>
+  </div>
+
+  <!-- ========================================================================
+       HEADER / NAVBAR
+       ======================================================================== -->
+  <header id="main-header" class="sticky top-0 z-50 backdrop-blur-xl bg-white/90 dark:bg-[#0b101d]/90 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16 gap-3">
+
+        <!-- Brand Logo -->
+        <div class="flex items-center gap-3">
+          <button onclick="app.navigateHome()" class="flex items-center gap-2.5 group text-left focus:outline-none">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 via-rose-600 to-orange-500 flex items-center justify-center shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="font-display font-bold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-slate-900 via-brand-600 to-rose-500 dark:from-white dark:via-rose-200 dark:to-brand-400 bg-clip-text text-transparent">MangaVerse</span>
+                <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-brand-500/15 text-brand-600 dark:text-brand-400 border border-brand-500/30">VN 3.0</span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block">6,700+ Truyện Tiếng Việt • 113,000+ Chương</p>
+            </div>
+          </button>
+
+          <!-- Live API Connection Indicator -->
+          <button onclick="app.toggleApiModal()" title="Xem trạng thái kết nối kho truyện API" class="hidden xl:flex items-center gap-2 pl-2.5 pr-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-xs font-medium hover:bg-emerald-500/20 transition">
+            <span class="relative flex h-2 w-2">
+              <span class="live-dot relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span id="api-status-label">MangaDex VN • Live</span>
+          </button>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1">
+          <button data-nav="home" onclick="app.switchList('home')" class="nav-tab px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+            Trang Chủ
+          </button>
+          <button data-nav="truyen-moi" onclick="app.switchList('truyen-moi')" class="nav-tab px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+            Mới Cập Nhật
+          </button>
+          <button data-nav="pho-bien" onclick="app.switchList('pho-bien')" class="nav-tab px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+            🔥 BXH Hot
+          </button>
+          <button data-nav="hoan-thanh" onclick="app.switchList('hoan-thanh')" class="nav-tab px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+            ✅ Truyện Full
+          </button>
+          <button data-nav="filter" onclick="app.openAdvancedFilterPanel()" class="nav-tab px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1">
+            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            <span>Bộ Lọc</span>
+          </button>
+        </nav>
+
+        <!-- Search Bar (Live Autocomplete + Submit) -->
+        <div class="relative flex-1 max-w-md mx-1">
+          <form onsubmit="app.handleSearchSubmit(event)" class="relative">
+            <input
+              id="search-input"
+              type="text"
+              autocomplete="off"
+              placeholder="Tìm tên truyện Việt, Anh, Nhật... (Phím /)"
+              oninput="app.handleSearchInput(this.value)"
+              onfocus="app.handleSearchFocus()"
+              class="w-full pl-9 pr-9 py-2 rounded-xl text-xs sm:text-sm bg-slate-100 dark:bg-slate-800/85 border border-slate-200/80 dark:border-slate-700/80 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition"
+            />
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <button
+              id="search-clear-btn"
+              type="button"
+              onclick="app.clearSearch()"
+              class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </form>
+
+          <!-- Instant Search Dropdown -->
+          <div
+            id="search-dropdown"
+            class="hidden absolute left-0 right-0 mt-2 bg-white dark:bg-[#131c2e] border border-slate-200 dark:border-slate-700/90 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-[72vh] overflow-y-auto"
+          ></div>
+        </div>
+
+        <!-- Action Buttons: Sync DB, Random, Bookmarks, History, Theme -->
+        <div class="flex items-center gap-1.5">
+          <!-- Sync & Crawler Center Button -->
+          <button
+            onclick="app.openSyncModal()"
+            title="Trung tâm Cào & Đồng bộ toàn bộ chương truyện"
+            class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500/15 border border-emerald-500/35 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white text-xs font-extrabold transition"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span class="hidden md:inline">Đồng Bộ Chap</span>
+            <span id="header-sync-count" class="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-emerald-500 text-slate-950">98.3K</span>
+          </button>
+
+          <!-- Random Comic Button -->
+          <button
+            onclick="app.openRandomComic()"
+            title="Khám phá truyện ngẫu nhiên"
+            class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-brand-500/15 text-slate-700 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 transition"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </button>
+
+          <!-- Bookmarks / Tủ Truyện -->
+          <button
+            data-nav="bookmarks"
+            onclick="app.switchList('bookmarks')"
+            title="Tủ truyện yêu thích"
+            class="nav-tab relative flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-brand-500/15 text-slate-700 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 text-xs font-semibold transition"
+          >
+            <svg class="w-4 h-4 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            <span class="hidden sm:inline">Tủ Truyện</span>
+            <span id="bookmarks-count-badge" class="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-brand-500 text-white hidden">0</span>
+          </button>
+
+          <!-- Reading History / Lịch Sử -->
+          <button
+            data-nav="history"
+            onclick="app.switchList('history')"
+            title="Lịch sử đọc truyện"
+            class="nav-tab relative flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-brand-500/15 text-slate-700 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 text-xs font-semibold transition"
+          >
+            <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="hidden sm:inline">Lịch Sử</span>
+            <span id="history-count-badge" class="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-amber-500 text-slate-950 hidden">0</span>
+          </button>
+
+          <!-- Theme Switcher -->
+          <button
+            onclick="app.toggleTheme()"
+            title="Chuyển chế độ Sáng / Tối"
+            class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition"
+          >
+            <svg id="theme-icon-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg id="theme-icon-moon" class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Quick Navigation Bar -->
+      <div class="flex lg:hidden items-center gap-1.5 overflow-x-auto no-scrollbar py-2 border-t border-slate-200/60 dark:border-slate-800/60">
+        <button data-nav="home" onclick="app.switchList('home')" class="nav-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold">Trang Chủ</button>
+        <button data-nav="truyen-moi" onclick="app.switchList('truyen-moi')" class="nav-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold">Mới Cập Nhật</button>
+        <button data-nav="pho-bien" onclick="app.switchList('pho-bien')" class="nav-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold">🔥 BXH Hot</button>
+        <button data-nav="hoan-thanh" onclick="app.switchList('hoan-thanh')" class="nav-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold">✅ Truyện Full</button>
+        <button data-nav="filter" onclick="app.openAdvancedFilterPanel()" class="nav-tab shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold">⚡ Bộ Lọc</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN CONTENT AREA
+       ======================================================================== -->
+  <main class="flex-1">
+
+    <!-- ======================================================================
+         VIEW 1: BROWSE / HOME / ADVANCED FILTER / SEARCH / LIBRARY
+         ====================================================================== -->
+    <div id="view-browse" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+      <!-- HERO SPOTLIGHT CAROUSEL (Shown on Home tab) -->
+      <section id="hero-section" class="relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-800/80 shadow-2xl min-h-[280px] sm:min-h-[330px] flex items-center">
+        <div id="hero-content" class="w-full">
+          <div class="p-8 sm:p-12 flex flex-col sm:flex-row items-center gap-8">
+            <div class="w-40 sm:w-48 aspect-[3/4] rounded-2xl skeleton shrink-0"></div>
+            <div class="flex-1 space-y-4 w-full">
+              <div class="h-6 w-32 rounded-full skeleton"></div>
+              <div class="h-10 w-3/4 rounded-xl skeleton"></div>
+              <div class="h-4 w-1/2 rounded-lg skeleton"></div>
+              <div class="flex gap-3 pt-2">
+                <div class="h-11 w-36 rounded-xl skeleton"></div>
+                <div class="h-11 w-36 rounded-xl skeleton"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTINUE READING SHELF (Shown automatically when user has reading history) -->
+      <section id="continue-reading-section" class="hidden bg-white dark:bg-[#101726] border border-slate-200/80 dark:border-slate-800/90 rounded-2xl p-4 sm:p-5 shadow-sm">
+        <div class="flex items-center justify-between mb-3.5">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <h2 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Đang Đọc Gần Đây (Đọc Tiếp)</h2>
+          </div>
+          <button onclick="app.switchList('history')" class="text-xs font-semibold text-brand-500 hover:text-brand-400 transition">
+            Xem tất cả lịch sử →
+          </button>
+        </div>
+        <div id="continue-reading-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+      </section>
+
+      <!-- ====================================================================
+           SMART FILTER & DISCOVERYCONSOLE (BỘ LỌC ĐA TIÊU CHÍ & ĐA KHO TRUYỆN)
+           ==================================================================== -->
+      <section class="rounded-3xl bg-white dark:bg-[#0f1625] border border-slate-200/90 dark:border-slate-800/90 p-4 sm:p-5 shadow-sm space-y-4">
+
+        <!-- Row 0: MULTI-SOURCE REPOSITORY SWITCHER (CHỌN KHO TRUYỆN TIẾNG VIỆT & QUỐC TẾ) -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200/70 dark:border-slate-800/80">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-300">Chọn Kho Truyện:</span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-1.5 flex-1 sm:justify-end">
+            <button
+              type="button"
+              data-source-btn="all_vi"
+              onclick="app.setRepositorySource('all_vi')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-extrabold transition bg-gradient-to-r from-brand-500 to-rose-600 text-white shadow-md shadow-brand-500/25"
+            >
+              ⚡ Tất Cả Kho Việt (Tổng Hợp 70K+)
+            </button>
+            <button
+              type="button"
+              data-source-btn="legends"
+              onclick="app.setRepositorySource('legends')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-extrabold transition bg-amber-500/15 border border-amber-500/40 text-amber-600 dark:text-amber-300 hover:bg-amber-500 hover:text-slate-950"
+            >
+              🏆 Huyền Thoại Song Ngữ (Blue Lock, Kindaichi, Đầu Bếp, Itto, Slam Dunk...)
+            </button>
+            <button
+              type="button"
+              data-source-btn="nettruyen"
+              onclick="app.setRepositorySource('nettruyen')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-emerald-500"
+            >
+              🟢 NetTruyen • NhatTruyen (35K+)
+            </button>
+            <button
+              type="button"
+              data-source-btn="otruyen_tqq"
+              onclick="app.setRepositorySource('otruyen_tqq')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-500"
+            >
+              🔵 OTruyen • TruyenQQ (25K+)
+            </button>
+            <button
+              type="button"
+              data-source-btn="cuutruyen"
+              onclick="app.setRepositorySource('cuutruyen')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-500"
+            >
+              🟣 Cứu Truyện VN (5.1K HD)
+            </button>
+            <button
+              type="button"
+              data-source-btn="mangadex_vi"
+              onclick="app.setRepositorySource('mangadex_vi')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-orange-500"
+            >
+              🟠 MangaDex Việt (6.7K+)
+            </button>
+            <button
+              type="button"
+              data-source-btn="synced_db"
+              onclick="app.setRepositorySource('synced_db')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-emerald-500"
+            >
+              📦 Đã Đồng Bộ (98.3K+ Chap)
+            </button>
+            <button
+              type="button"
+              data-source-btn="mangadex_en"
+              onclick="app.setRepositorySource('mangadex_en')"
+              class="source-repo-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-indigo-500"
+            >
+              🇬🇧 Quốc Tế (75K+)
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 1: Quick Origin Tabs + Sort + Status + Advanced Filter Toggle -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+
+          <!-- Quick Country / Comic Type Pills -->
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-bold text-slate-400 mr-1 hidden sm:inline">Loại truyện:</span>
+            <button
+              onclick="app.setQuickFilter('origin', 'all')"
+              data-origin-btn="all"
+              class="origin-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-brand-500 text-white shadow-sm"
+            >
+              Tất Cả
+            </button>
+            <button
+              onclick="app.setQuickFilter('origin', 'ja')"
+              data-origin-btn="ja"
+              class="origin-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-brand-500"
+            >
+              🇯🇵 Manga (Nhật)
+            </button>
+            <button
+              onclick="app.setQuickFilter('origin', 'ko')"
+              data-origin-btn="ko"
+              class="origin-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-brand-500"
+            >
+              🇰🇷 Manhwa (Hàn)
+            </button>
+            <button
+              onclick="app.setQuickFilter('origin', 'zh')"
+              data-origin-btn="zh"
+              class="origin-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-brand-500"
+            >
+              🇨🇳 Manhua (Trung)
+            </button>
+          </div>
+
+          <!-- Quick Dropdowns: Status, Sort, Expand Advanced Filter -->
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Status Select -->
+            <select
+              id="filter-status-select"
+              onchange="app.setQuickFilter('status', this.value)"
+              class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500"
+            >
+              <option value="all">📌 Tình trạng: Tất cả</option>
+              <option value="ongoing">🟢 Đang tiến hành</option>
+              <option value="completed">✅ Đã hoàn thành (Full)</option>
+              <option value="hiatus">⏸️ Tạm ngưng</option>
+            </select>
+
+            <!-- Sort Select -->
+            <select
+              id="filter-sort-select"
+              onchange="app.setQuickFilter('sort', this.value)"
+              class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-brand-500"
+            >
+              <option value="latestUploadedChapter">🔥 Sắp xếp: Mới cập nhật</option>
+              <option value="followedCount">👑 Sắp xếp: Phổ biến / Hot nhất</option>
+              <option value="rating">⭐ Sắp xếp: Điểm đánh giá cao</option>
+              <option value="createdAt">🆕 Sắp xếp: Truyện mới đăng</option>
+              <option value="title">🔤 Sắp xếp: Tên A → Z</option>
+            </select>
+
+            <!-- Toggle Advanced Multi-Criteria Drawer -->
+            <button
+              id="toggle-adv-filter-btn"
+              onclick="app.toggleAdvancedFilterDrawer()"
+              class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-brand-500/15 border border-brand-500/40 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white flex items-center gap-1.5 transition"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+              <span>Lọc nâng cao</span>
+              <span id="adv-filter-count-badge" class="hidden px-1.5 py-0.2 rounded-full bg-brand-500 text-white text-[10px]">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 2: Horizontal Single-Click Genre Bar -->
+        <div class="pt-2 border-t border-slate-200/60 dark:border-slate-800/70">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Thể loại phổ biến (Bấm để lọc nhanh hoặc chọn nhiều trong Lọc nâng cao)</span>
+            <button onclick="app.toggleAllGenres()" id="toggle-genres-btn" class="text-xs font-semibold text-brand-500 hover:text-brand-400">
+              Xem tất cả thể loại
+            </button>
+          </div>
+          <div id="genre-pills-bar" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1"></div>
+        </div>
+
+        <!-- Row 3: EXPANDABLE ADVANCED MULTI-CRITERIA FILTER DRAWER -->
+        <div id="advanced-filter-drawer" class="hidden pt-4 border-t border-slate-200 dark:border-slate-800 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+
+            <!-- Keyword in Filter -->
+            <div class="space-y-1">
+              <label class="font-bold text-slate-500 dark:text-slate-400 block">Từ khóa tên truyện</label>
+              <input
+                id="adv-keyword-input"
+                type="text"
+                placeholder="VD: Solo Leveling, Isekai, Villainess..."
+                oninput="app.updateDraftFilter('keyword', this.value)"
+                class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"
+              />
+            </div>
+
+            <!-- Demographic -->
+            <div class="space-y-1">
+              <label class="font-bold text-slate-500 dark:text-slate-400 block">Đối tượng độc giả</label>
+              <select
+                id="adv-demographic-select"
+                onchange="app.updateDraftFilter('demographic', this.value)"
+                class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold focus:outline-none focus:border-brand-500"
+              >
+                <option value="all">Tất cả đối tượng</option>
+                <option value="shounen">⚡ Shounen (Nam thiếu niên)</option>
+                <option value="seinen">⚔️ Seinen (Nam trưởng thành)</option>
+                <option value="shoujo">🌸 Shoujo (Nữ thiếu nữ)</option>
+                <option value="josei">💎 Josei (Nữ trưởng thành)</option>
+              </select>
+            </div>
+
+            <!-- Translation Language -->
+            <div class="space-y-1">
+              <label class="font-bold text-slate-500 dark:text-slate-400 block">Ngôn ngữ bản dịch</label>
+              <select
+                id="adv-lang-select"
+                onchange="app.updateDraftFilter('lang', this.value)"
+                class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold focus:outline-none focus:border-brand-500"
+              >
+                <option value="vi">🇻🇳 Tiếng Việt (6,700+ bộ)</option>
+                <option value="en">🇬🇧 Tiếng Anh (Kho 70,000+ bộ)</option>
+                <option value="all">🌐 Tất cả ngôn ngữ</option>
+              </select>
+            </div>
+
+            <!-- Release Year -->
+            <div class="space-y-1">
+              <label class="font-bold text-slate-500 dark:text-slate-400 block">Năm phát hành</label>
+              <select
+                id="adv-year-select"
+                onchange="app.updateDraftFilter('year', this.value)"
+                class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-semibold focus:outline-none focus:border-brand-500"
+              >
+                <option value="all">Tất cả các năm</option>
+                <option value="2026">Năm 2026</option>
+                <option value="2025">Năm 2025</option>
+                <option value="2024">Năm 2024</option>
+                <option value="2023">Năm 2023</option>
+                <option value="2022">Năm 2022</option>
+                <option value="2021">Năm 2021</option>
+                <option value="2020">Năm 2020</option>
+                <option value="2019">Năm 2019</option>
+                <option value="2018">Năm 2018</option>
+                <option value="2015">Năm 2015</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Multi-Genre Selection Grid -->
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <label class="text-xs font-bold text-slate-500 dark:text-slate-400">
+                Chọn kết hợp nhiều thể loại cùng lúc (Nhấn để chọn / bỏ chọn):
+              </label>
+              <div class="flex items-center gap-2 text-xs">
+                <span class="text-slate-400">Chế độ ghép thể loại:</span>
+                <button
+                  type="button"
+                  id="tags-mode-and-btn"
+                  onclick="app.setTagsCombineMode('AND')"
+                  class="px-2.5 py-1 rounded-lg font-bold bg-brand-500 text-white"
+                >
+                  Chứa tất cả (AND)
+                </button>
+                <button
+                  type="button"
+                  id="tags-mode-or-btn"
+                  onclick="app.setTagsCombineMode('OR')"
+                  class="px-2.5 py-1 rounded-lg font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+                >
+                  Chứa bất kỳ (OR)
+                </button>
+              </div>
+            </div>
+
+            <div id="adv-multi-genres-grid" class="flex flex-wrap gap-1.5 pt-1"></div>
+          </div>
+
+          <!-- Apply / Reset Filter Actions -->
+          <div class="flex flex-wrap items-center justify-end gap-2.5 pt-2 border-t border-slate-200/70 dark:border-slate-800">
+            <button
+              type="button"
+              onclick="app.resetAllFilters()"
+              class="px-4 py-2 rounded-xl bg-slate-200/80 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition"
+            >
+              ↺ Đặt lại mặc định
+            </button>
+            <button
+              type="button"
+              onclick="app.applyAdvancedFilters()"
+              class="px-6 py-2 rounded-xl bg-gradient-to-r from-brand-500 to-rose-600 hover:from-brand-600 hover:to-rose-700 text-white text-xs font-extrabold shadow-lg shadow-brand-500/25 flex items-center gap-1.5 transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span>Áp Dụng Bộ Lọc Ngay</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 4: ACTIVE FILTER CHIPS BAR (Shown whenever any filter is active) -->
+        <div id="active-filter-chips-bar" class="hidden pt-3 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-wrap items-center gap-1.5"></div>
+      </section>
+
+      <!-- ====================================================================
+           CURRENT LIST HEADER, VIEW SWITCHER & COMIC GRID
+           ==================================================================== -->
+      <section class="space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800/80">
+          <div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-1.5 h-6 rounded-full bg-gradient-to-b from-brand-500 to-orange-500"></span>
+              <h1 id="list-title" class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Truyện Mới Cập Nhật
+              </h1>
+            </div>
+            <p id="list-subtitle" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Dữ liệu trực tiếp từ kho truyện tranh Tiếng Việt mở MangaDex
+            </p>
+          </div>
+
+          <!-- Right Controls: Total count, View Layout Toggle (Grid vs Detailed Card), Refresh -->
+          <div class="flex items-center gap-2 self-start sm:self-auto">
+            <span id="total-items-badge" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-200/70 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300">
+              Đang tải...
+            </span>
+
+            <!-- Layout Switcher: Grid (6 cols) vs Detailed Cards (3 cols with Synopsis) -->
+            <div class="flex items-center bg-slate-200/70 dark:bg-slate-800/90 p-0.5 rounded-xl border border-slate-300/60 dark:border-slate-700/70">
+              <button
+                id="layout-grid-btn"
+                onclick="app.setCardLayout('grid')"
+                title="Chế độ Lưới Poster (6 cột)"
+                class="p-1.5 rounded-lg text-xs font-bold transition bg-brand-500 text-white"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+              </button>
+              <button
+                id="layout-detail-btn"
+                onclick="app.setCardLayout('detailed')"
+                title="Chế độ Thẻ Chi Tiết (Hiện tóm tắt cốt truyện)"
+                class="p-1.5 rounded-lg text-xs font-bold transition text-slate-500 dark:text-slate-400"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+
+            <button
+              onclick="app.refreshCurrentList()"
+              title="Làm mới dữ liệu"
+              class="p-2 rounded-xl bg-slate-200/70 dark:bg-slate-800/90 hover:bg-brand-500/20 text-slate-600 dark:text-slate-300 hover:text-brand-500 transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- COMIC CARDS GRID -->
+        <div id="comic-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5"></div>
+
+        <!-- PAGINATION BAR -->
+        <div id="pagination-bar" class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4"></div>
+      </section>
+
+    </div>
+
+    <!-- ======================================================================
+         VIEW 2: COMIC DETAIL & CHAPTER LIST
+         ====================================================================== -->
+    <div id="view-detail" class="hidden max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-8">
+      <div id="detail-container"></div>
+    </div>
+
+    <!-- ======================================================================
+         VIEW 3: FULL-FEATURED COMIC READER
+         ====================================================================== -->
+    <div id="view-reader" class="hidden min-h-screen bg-[#060911] text-slate-100 flex flex-col">
+
+      <!-- Sticky Reader Control Bar -->
+      <div id="reader-toolbar" class="sticky top-0 z-50 backdrop-blur-xl bg-[#0b101d]/95 border-b border-slate-800/90 shadow-xl transition-transform duration-200">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
+
+          <!-- Left: Back to Comic Detail & Title -->
+          <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+            <button
+              onclick="app.closeReaderToDetail()"
+              class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold shrink-0 transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              <span class="hidden sm:inline">Chi tiết truyện</span>
+            </button>
+            <div class="min-w-0">
+              <h2 id="reader-comic-title" class="text-xs sm:text-sm font-bold text-white truncate">Đang tải truyện...</h2>
+              <p id="reader-chapter-subtitle" class="text-[11px] text-brand-400 font-semibold truncate">Chương ...</p>
+            </div>
+          </div>
+
+          <!-- Center: Chapter Navigation Controls -->
+          <div class="flex items-center gap-1.5">
+            <button
+              id="reader-prev-btn"
+              onclick="app.navigateAdjacentChapter(-1)"
+              title="Chương trước (Phím ←)"
+              class="p-2 rounded-xl bg-slate-800 hover:bg-brand-600 disabled:opacity-35 disabled:pointer-events-none text-white transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <select
+              id="reader-chapter-select"
+              onchange="app.handleReaderChapterSelect(this.value)"
+              class="bg-slate-800 border border-slate-700 text-white text-xs font-semibold rounded-xl px-2.5 py-2 max-w-[140px] sm:max-w-[220px] focus:outline-none focus:border-brand-500"
+            ></select>
+
+            <button
+              id="reader-next-btn"
+              onclick="app.navigateAdjacentChapter(1)"
+              title="Chương tiếp theo (Phím →)"
+              class="p-2 rounded-xl bg-slate-800 hover:bg-brand-600 disabled:opacity-35 disabled:pointer-events-none text-white transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Right: Quality, Auto-Scroll, Reader Settings & Fullscreen -->
+          <div class="flex items-center gap-1.5">
+            <!-- Page Counter Badge -->
+            <span id="reader-page-counter" class="hidden md:inline-flex items-center px-2.5 py-1 rounded-lg bg-slate-800/90 border border-slate-700 text-[11px] font-semibold text-slate-300">
+              0 trang
+            </span>
+
+            <!-- Image Quality Toggle (Fast Saver vs HD) -->
+            <button
+              id="reader-quality-btn"
+              onclick="app.toggleReaderImageQuality()"
+              title="Đổi chất lượng ảnh (Nhanh / HD Gốc)"
+              class="hidden sm:inline-flex px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-300 text-xs font-bold transition"
+            >
+              ⚡ Nhanh
+            </button>
+
+            <!-- Auto Scroll Button -->
+            <button
+              id="reader-autoscroll-btn"
+              onclick="app.toggleAutoScroll()"
+              title="Tự động cuộn trang (Phím A)"
+              class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-1 transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
+              </svg>
+              <span id="autoscroll-label" class="hidden sm:inline">Tự cuộn</span>
+            </button>
+
+            <!-- Reader Settings Button -->
+            <button
+              onclick="app.toggleReaderSettings()"
+              title="Tùy chỉnh chế độ đọc"
+              class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </button>
+
+            <!-- Fullscreen Button -->
+            <button
+              onclick="app.toggleFullScreen()"
+              title="Toàn màn hình (Phím F)"
+              class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hidden sm:flex transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Reader Settings Drawer -->
+        <div id="reader-settings-drawer" class="hidden border-t border-slate-800 bg-[#101829] px-4 py-4">
+          <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <!-- Reading Mode -->
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold block">Kiểu đọc truyện</label>
+              <div class="grid grid-cols-2 gap-1.5">
+                <button id="mode-vertical-btn" onclick="app.setReaderMode('vertical')" class="px-3 py-2 rounded-xl font-semibold border border-brand-500 bg-brand-500/20 text-brand-300">
+                  Cuộn Dọc
+                </button>
+                <button id="mode-single-btn" onclick="app.setReaderMode('single')" class="px-3 py-2 rounded-xl font-semibold border border-slate-700 bg-slate-800 text-slate-300">
+                  Lật Từng Trang
+                </button>
+              </div>
+            </div>
+
+            <!-- Page Width & Webtoon Seamless Gap -->
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold block">Kích thước & Khoảng cách trang</label>
+              <div class="flex gap-1.5">
+                <select id="reader-width-select" onchange="app.setReaderWidth(this.value)" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-semibold">
+                  <option value="800px">Tiêu chuẩn (800px)</option>
+                  <option value="1000px">Rộng (1000px)</option>
+                  <option value="640px">Gọn (640px)</option>
+                  <option value="100%">Toàn màn hình (100%)</option>
+                </select>
+                <button id="gap-toggle-btn" onclick="app.toggleSeamlessGap()" class="px-3 py-2 rounded-xl bg-brand-500/20 border border-brand-500 text-brand-300 font-semibold shrink-0">
+                  Ghép sát
+                </button>
+              </div>
+            </div>
+
+            <!-- Brightness & Eye-Care Filter -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between">
+                <label class="text-slate-400 font-semibold">Độ sáng & Bảo vệ mắt</label>
+                <span id="brightness-val" class="text-brand-400 font-bold">100%</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="range" min="50" max="120" value="100" oninput="app.setReaderBrightness(this.value)" class="w-full accent-brand-500" />
+                <button id="eyecare-btn" onclick="app.toggleEyeCare()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-amber-300 font-semibold shrink-0">
+                  Ánh vàng
+                </button>
+              </div>
+            </div>
+
+            <!-- Auto-scroll Speed -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between">
+                <label class="text-slate-400 font-semibold">Tốc độ tự cuộn (Phím A)</label>
+                <span id="autoscroll-speed-val" class="text-emerald-400 font-bold">2x</span>
+              </div>
+              <input type="range" min="1" max="6" value="2" oninput="app.setAutoScrollSpeed(this.value)" class="w-full accent-emerald-500" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reader Main Canvas -->
+      <div class="flex-1 flex flex-col items-center py-4 px-2 sm:px-4">
+        <div id="reader-canvas" class="reader-canvas reader-gap-seamless w-full mx-auto transition-all" style="max-width: 800px;"></div>
+      </div>
+
+      <!-- Reader Bottom Chapter Navigation Footer -->
+      <div class="max-w-3xl w-full mx-auto px-4 py-10 space-y-5 text-center">
+        <div class="p-5 rounded-2xl bg-[#111827] border border-slate-800 space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Bạn đã đọc hết <span id="reader-footer-chapter-name" class="text-brand-400">chương này</span></p>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button
+              id="reader-bottom-prev-btn"
+              onclick="app.navigateAdjacentChapter(-1)"
+              class="flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-35 disabled:pointer-events-none text-white text-sm font-bold transition"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              <span>Chương Trước</span>
+            </button>
+
+            <button
+              onclick="app.closeReaderToDetail()"
+              class="px-4 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-sm font-semibold transition"
+            >
+              Danh Sách Chương
+            </button>
+
+            <button
+              id="reader-bottom-next-btn"
+              onclick="app.navigateAdjacentChapter(1)"
+              class="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-rose-600 hover:from-brand-600 hover:to-rose-700 disabled:opacity-35 disabled:pointer-events-none text-white text-sm font-bold shadow-lg shadow-brand-500/25 transition"
+            >
+              <span>Chương Tiếp Theo</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          <p class="text-[11px] text-slate-500">
+            Mẹo: Dùng phím <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">→</kbd> để chuyển chương/trang, <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">A</kbd> để tự cuộn, <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">F</kbd> toàn màn hình, <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">Esc</kbd> để quay lại.
+          </p>
+        </div>
+      </div>
+
+      <!-- Floating Bottom-Right Mini Reader Dock -->
+      <div class="fixed bottom-5 right-5 z-40 flex items-center gap-1.5 p-1.5 rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-slate-700/80 shadow-2xl">
+        <button
+          onclick="app.navigateAdjacentChapter(-1)"
+          title="Chương trước"
+          class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-brand-500 text-white text-xs font-bold transition"
+        >
+          ‹ Trước
+        </button>
+        <button
+          onclick="app.toggleAutoScroll()"
+          title="Bật/Tắt tự cuộn (Phím A)"
+          class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-bold transition"
+        >
+          ⇊ Tự cuộn
+        </button>
+        <button
+          onclick="app.navigateAdjacentChapter(1)"
+          title="Chương tiếp theo"
+          class="px-2.5 py-1.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold transition"
+        >
+          Sau ›
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       QUICK PREVIEW MODAL (👁️ XEM NHANH TRUYỆN)
+       ======================================================================== -->
+  <div id="quick-preview-modal" onclick="if(event.target===this) app.closeQuickPreview()" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="quick-preview-content" class="bg-white dark:bg-[#11192a] border border-slate-200 dark:border-slate-800 rounded-3xl max-w-2xl w-full p-6 shadow-2xl"></div>
+  </div>
+
+  <!-- ========================================================================
+       CRAWLER & CHAPTER SYNCHRONIZATION DASHBOARD MODAL
+       ======================================================================== -->
+  <div id="sync-modal" onclick="if(event.target===this) app.closeSyncModal()" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#101829] border border-slate-200 dark:border-slate-800 rounded-3xl max-w-3xl w-full p-6 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Trung Tâm Cào & Đồng Bộ Toàn Bộ Chương Truyện</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Quét & lưu toàn bộ danh sách chương từ NetTruyen, Cứu Truyện, TruyenQQ/OTruyen và MangaDex</p>
+          </div>
+        </div>
+        <button onclick="app.closeSyncModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          ✕
+        </button>
+      </div>
+
+      <!-- Sync Stats Cards -->
+      <div id="sync-stats-container" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <!-- Populated dynamically by app.js -->
+      </div>
+
+      <!-- Progress & Live Status -->
+      <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-2.5">
+        <div class="flex items-center justify-between text-xs">
+          <span id="sync-phase-label" class="font-bold text-emerald-500">Sẵn sàng đồng bộ</span>
+          <span id="sync-last-comic" class="text-slate-400 truncate max-w-xs"></span>
+        </div>
+        <div class="w-full h-2.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+          <div id="sync-progress-bar" class="h-full bg-gradient-to-r from-emerald-500 to-brand-500 transition-all duration-300" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- Crawler Console Logs -->
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Nhật ký Crawler & Đồng Bộ Thời Gian Thực</label>
+        <div id="sync-logs-box" class="p-3.5 rounded-2xl bg-slate-950 text-emerald-400 font-mono text-xs h-44 overflow-y-auto space-y-1 border border-slate-800">
+          <div>Đang tải trạng thái cơ sở dữ liệu đồng bộ...</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <button
+          onclick="app.closeSyncModal(); app.setRepositorySource('synced_db')"
+          class="px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-bold transition"
+        >
+          📦 Duyệt Kho Đã Đồng Bộ Ngay
+        </button>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            id="btn-start-sync-1"
+            onclick="app.triggerServerSync(1)"
+            class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-extrabold shadow-lg shadow-emerald-500/20 transition"
+          >
+            ⚡ Cào Nhanh (+1 Đợt / 4 Nguồn)
+          </button>
+          <button
+            id="btn-start-sync-3"
+            onclick="app.triggerServerSync(3)"
+            class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-rose-600 hover:from-brand-600 hover:to-rose-700 text-white text-xs font-extrabold shadow-lg shadow-brand-500/25 transition"
+          >
+            🔥 Cào Sâu Toàn Diện (+3 Đợt / 4 Nguồn)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       API SOURCE & DIAGNOSTICS MODAL
+       ======================================================================== -->
+  <div id="api-modal" onclick="if(event.target===this) app.toggleApiModal()" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#11192a] border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Thông Tin Kho Truyện Tranh Mở (API)</h3>
+        </div>
+        <button onclick="app.toggleApiModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+        <p>
+          <strong>MangaVerse VN 3.0</strong> kết nối trực tiếp tới hệ thống <strong>MangaDex v5 Live API</strong> thông qua Local Gateway & Image Proxy (`localhost:3080`), cung cấp hơn <strong>6,746+ bộ truyện Tiếng Việt</strong> và <strong>113,000+ chương truyện</strong> miễn phí.
+        </p>
+        <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 font-mono text-xs space-y-1.5">
+          <div><span class="text-slate-400">Local Gateway:</span> <span class="text-emerald-500">http://localhost:3080/v1/api</span></div>
+          <div><span class="text-slate-400">Upstream API:</span> <span class="text-sky-400">https://api.mangadex.org</span></div>
+          <div><span class="text-slate-400">Image Proxy:</span> <span class="text-amber-400">http://localhost:3080/api/img?url=...</span></div>
+          <div><span class="text-slate-400">Trạng thái:</span> <span id="modal-api-status" class="text-emerald-400 font-bold">Đang hoạt động tốt</span></div>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="app.clearCacheAndReload()" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-semibold">
+          Xóa bộ nhớ đệm API
+        </button>
+        <button onclick="app.toggleApiModal()" class="px-5 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold">
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button
+    id="back-to-top-btn"
+    onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    title="Lên đầu trang"
+    class="hidden fixed bottom-6 left-6 z-40 w-11 h-11 rounded-2xl bg-slate-900/90 dark:bg-brand-500 text-white shadow-xl border border-white/15 flex items-center justify-center hover:scale-110 transition"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-[80] flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer id="main-footer" class="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-[#0b101d]/70 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-800 dark:text-slate-200">MangaVerse VN 3.0</span>
+        <span>•</span>
+        <span>Kho truyện tranh mở miễn phí tích hợp Bộ lọc đa tiêu chí thông minh</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <button onclick="app.switchList('truyen-moi')" class="hover:text-brand-500 transition">Truyện Mới</button>
+        <button onclick="app.switchList('pho-bien')" class="hover:text-brand-500 transition">BXH Hot</button>
+        <button onclick="app.switchList('hoan-thanh')" class="hover:text-brand-500 transition">Truyện Full</button>
+        <button onclick="app.switchList('bookmarks')" class="hover:text-brand-500 transition">Tủ Truyện</button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="synced-seed.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

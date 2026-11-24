@@ -1,0 +1,102 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/proxy-nt/*"
+  to = "https://nhattruyenqq.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-nt-img1/*"
+  to = "https://v1.beercloudy.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-nt-img2/*"
+  to = "https://v2.beercloudy.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-nt-img3/*"
+  to = "https://v3.beercloudy.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-nt-img4/*"
+  to = "https://v4.beercloudy.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-tqq/*"
+  to = "https://truyenqq.cx/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-ot-img/*"
+  to = "https://sv1.otruyencdn.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-ct-api/*"
+  to = "https://cuutruyen.net/api/v2/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-ct2-api/*"
+  to = "https://hetcuutruyen.net/api/v2/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-ct-img/*"
+  to = "https://storage-ct.lrclib.net/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-md-api/*"
+  to = "https://api.mangadex.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-md-img/*"
+  to = "https://uploads.mangadex.org/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-mp/*"
+  to = "https://mangapill.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/proxy-mp-img/*"
+  to = "https://cdn.readdetectiveconan.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/v1/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+  force = true

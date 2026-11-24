@@ -1,0 +1,17 @@
+{
+  "name": "mangaverse-vn",
+  "version": "5.5.0",
+  "description": "Website đọc truyện tranh đa nguồn (NetTruyen, TruyenQQ/OTruyen, Cứu Truyện, MangaDex, MangaPill) kèm 98,344 chương đã đồng bộ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:win": "node --use-system-ca server.js",
+    "sync": "node --use-system-ca crawler-sync.js legends",
+    "tunnel": "npx localtunnel --port 3080",
+    "deploy:vercel": "npx vercel --prod",
+    "deploy:netlify": "npx netlify-cli deploy --prod --dir=. --functions=netlify/functions"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

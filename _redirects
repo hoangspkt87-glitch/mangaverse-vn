@@ -1,0 +1,17 @@
+/proxy-nt/*        https://nhattruyenqq.com/:splat             200!
+/proxy-nt-img1/*   https://v1.beercloudy.com/:splat            200!
+/proxy-nt-img2/*   https://v2.beercloudy.com/:splat            200!
+/proxy-nt-img3/*   https://v3.beercloudy.com/:splat            200!
+/proxy-nt-img4/*   https://v4.beercloudy.com/:splat            200!
+/proxy-tqq/*       https://truyenqq.cx/:splat                  200!
+/proxy-ot-img/*    https://sv1.otruyencdn.com/:splat           200!
+/proxy-ct-api/*    https://cuutruyen.net/api/v2/:splat         200!
+/proxy-ct2-api/*   https://hetcuutruyen.net/api/v2/:splat      200!
+/proxy-ct-img/*    https://storage-ct.lrclib.net/:splat        200!
+/proxy-md-api/*    https://api.mangadex.org/:splat             200!
+/proxy-md-img/*    https://uploads.mangadex.org/:splat         200!
+/proxy-mp/*        https://mangapill.com/:splat                200!
+/proxy-mp-img/*    https://cdn.readdetectiveconan.com/:splat   200!
+/v1/api/*          /.netlify/functions/api                     200
+/api/*             /.netlify/functions/api                     200
+/*                 /index.html                                 200
