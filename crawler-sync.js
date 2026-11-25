@@ -291,6 +291,46 @@ const LEGENDARY_MANGA_TARGETS = [
   { title: 'Anh Hùng Vô Lệ (Cổ Long)', origin: 'zh', ntSlug: 'anh-hung-vo-le', tags: ['Kiếm Hiệp', 'Cổ Trang', 'Võ Thuật', 'Manhua'], priority: 143 },
   { title: 'Cửu Long Thành Trại (City of Darkness)', origin: 'zh', mdId: 'cbe80ad5-a14d-45cc-9b06-f80cb43069d8', mpPath: '/manga/789/city-of-darkness', tags: ['Võ Thuật', 'Giang Hồ', 'Hành Động', 'Manhua'], priority: 144 },
   { title: 'Thiết Huyết Giang Hồ (Blood and Steel)', origin: 'zh', mdId: '66400137-fce8-4240-8a7c-8b25624b49a6', mpPath: '/manga/556/blood-and-steel', tags: ['Kiếm Hiệp', 'Võ Thuật', 'Hành Động', 'Manhua'], priority: 145 },
+
+  // ==========================================================================
+  // 10. BỘ SƯU TẬP ĐẦY ĐỦ 7 ĐẠI TÁC GIẢ (MANGAKA HUYỀN THOẠI)
+  // ==========================================================================
+  // A. YOSHIHIRO TOGASHI
+  { title: 'Hành Trình U Linh Giới (Yu Yu Hakusho — Nhất Dương Chỉ)', authorName: 'Yoshihiro Togashi', ntQuery: 'hanh trinh u linh gioi', mdId: '44a5cbe1-0204-4cc7-a1ff-0fda2ac004b6', mpPath: '/manga/4926/yu-yu-hakusho', tags: ['Hành Động', 'Siêu Nhiên', 'Shounen'], priority: 146 },
+  { title: 'Level E (Yoshihiro Togashi)', authorName: 'Yoshihiro Togashi', mdId: '9b217a11-3447-4c80-885e-34c0b472a75b', mpPath: '/manga/2588/level-e', tags: ['Hài Hước', 'Khoa Học Viễn Tưởng', 'Shounen'], priority: 147 },
+
+  // B. TAKEHIKO INOUE
+  { title: 'Real — Bóng Rổ Xe Lăn (Takehiko Inoue)', authorName: 'Takehiko Inoue', mdId: '62b74aa6-24df-4b91-b76d-39e7ab3c3ca5', mpPath: '/manga/3539/real', tags: ['Thể Thao', 'Bóng Rổ', 'Tâm Lý', 'Seinen'], priority: 148 },
+  { title: 'Buzzer Beater (Takehiko Inoue)', authorName: 'Takehiko Inoue', mdId: 'e334a374-3eb3-45ba-96bd-b136b94da02a', mpPath: '/manga/6342/buzzer-beater', tags: ['Thể Thao', 'Bóng Rổ', 'Khoa Học Viễn Tưởng'], priority: 149 },
+
+  // C. OSAMU TEZUKA
+  { title: 'Bác Sĩ Quái Dị (Black Jack — Osamu Tezuka)', authorName: 'Osamu Tezuka', ntSlug: 'black-jack', mdId: 'fd86eab2-f0f3-47d3-bce5-5628e97f37dc', mpPath: '/manga/529/black-jack', tags: ['Y Học', 'Kịch Tính', 'Kinh Điển'], priority: 150 },
+  { title: 'Siêu Nhân Nguyên Tử (Astro Boy — Tetsuwan Atom)', authorName: 'Osamu Tezuka', mdId: 'ca4c84bb-7272-45aa-a22d-dc1282b52372', mpPath: '/manga/360/astro-boy', tags: ['Khoa Học Viễn Tưởng', 'Hành Động', 'Kinh Điển'], priority: 151 },
+  { title: 'Đức Phật (Buddha — Osamu Tezuka)', authorName: 'Osamu Tezuka', mdId: '4e102d46-0a98-4249-8a42-98e4705b663e', mpPath: '/manga/672/buddha', tags: ['Lịch Sử', 'Triết Lý', 'Kinh Điển'], priority: 152 },
+  { title: 'Chim Lửa (Phoenix / Hi no Tori — Osamu Tezuka)', authorName: 'Osamu Tezuka', mdId: 'cc647d62-3a2c-474b-ac4e-844256ab185d', mpPath: '/manga/3446/phoenix', tags: ['Giả Tưởng', 'Triết Lý', 'Kinh Điển'], priority: 153 },
+  { title: 'Dororo (Osamu Tezuka)', authorName: 'Osamu Tezuka', mdId: '07d858d0-1537-487f-8e1f-a32e1782206d', mpPath: '/manga/1042/dororo', tags: ['Hành Động', 'Siêu Nhiên', 'Cổ Đại'], priority: 154 },
+  { title: 'Bức Thư Gửi Adolf (Message to Adolf — Osamu Tezuka)', authorName: 'Osamu Tezuka', mdId: '16dc43f3-d6ba-4154-b445-a9d2e674c0eb', mpPath: '/manga/113/adolf-ni-tsugu', tags: ['Lịch Sử', 'Tâm Lý', 'Kịch Tính'], priority: 155 },
+  { title: 'Ayako (Osamu Tezuka)', authorName: 'Osamu Tezuka', mdId: 'df64232c-cc30-4e9c-92e1-7ccba2b743b0', mpPath: '/manga/384/ayako', tags: ['Tâm Lý', 'Bí Ẩn', 'Seinen'], priority: 156 },
+
+  // D. AKIRA TORIYAMA
+  { title: 'Bảy Viên Ngọc Rồng Siêu Cấp (Dragon Ball Super)', authorName: 'Akira Toriyama', ntSlug: 'bay-vien-ngoc-rong-sieu-cap', mdId: '37b87be0-b1f4-4507-affa-06c99ebb27f8', mpPath: '/manga/1069/dragon-ball-super', tags: ['Hành Động', 'Võ Thuật', 'Shounen'], priority: 157 },
+  { title: 'Tiến Sĩ Slump (Dr. Slump — Arale)', authorName: 'Akira Toriyama', mdId: '985e4ae6-7a36-42c5-ae12-f4291c58798c', mpPath: '/manga/1058/dr-slump', tags: ['Hài Hước', 'Khoa Học Viễn Tưởng', 'Kinh Điển'], priority: 158 },
+  { title: 'Vùng Đất Cát (Sand Land — Akira Toriyama)', authorName: 'Akira Toriyama', mdId: '88d8271a-ed40-4874-b23f-a1ded5fc1ebf', mpPath: '/manga/3729/sand-land', tags: ['Phiêu Lưu', 'Hành Động', 'Hài Hước'], priority: 159 },
+  { title: 'Tuần Tra Ngân Hà Jaco (Jaco the Galactic Patrolman)', authorName: 'Akira Toriyama', mdId: 'd22cf103-18fa-4fb0-bc2c-75695895c74b', tags: ['Hài Hước', 'Hành Động', 'Khoa Học Viễn Tưởng'], priority: 160 },
+
+  // E. NAOKI URASAWA
+  { title: 'Những Chàng Trai Thế Kỷ 20 (20th Century Boys)', authorName: 'Naoki Urasawa', mdId: 'ad06790a-01e3-400c-a449-0ec152d6756a', mpPath: '/manga/11/20-seiki-shounen', tags: ['Bí Ẩn', 'Tâm Lý', 'Seinen'], priority: 161 },
+  { title: 'Những Chàng Trai Thế Kỷ 21 (21st Century Boys)', authorName: 'Naoki Urasawa', mdId: '1010ebf3-2859-4101-badc-034bd08132ff', mpPath: '/manga/46/21st-century-boys', tags: ['Bí Ẩn', 'Tâm Lý', 'Seinen'], priority: 162 },
+  { title: 'Pluto — Khúc Tráng Ca Robot (Naoki Urasawa)', authorName: 'Naoki Urasawa', mdId: 'e171c073-4415-499b-85bc-ea93825127ac', mpPath: '/manga/3461/pluto', tags: ['Trinh Thám', 'Khoa Học Viễn Tưởng', 'Seinen'], priority: 163 },
+  { title: 'Billy Bat (Naoki Urasawa)', authorName: 'Naoki Urasawa', mdId: 'e5357466-c8a2-4259-9b02-2580185bd2bb', mpPath: '/manga/503/billy-bat', tags: ['Bí Ẩn', 'Lịch Sử', 'Seinen'], priority: 164 },
+  { title: 'Thám Tử Keaton (Master Keaton — Naoki Urasawa)', authorName: 'Naoki Urasawa', mpPath: '/manga/2818/master-keaton', tags: ['Trinh Thám', 'Phiêu Lưu', 'Seinen'], priority: 165 },
+  { title: 'Asadora! (Naoki Urasawa)', authorName: 'Naoki Urasawa', mdId: '9047286f-ea5b-475a-84cc-a2533983ffe9', mpPath: '/manga/336/asadora', tags: ['Lịch Sử', 'Kịch Tính', 'Seinen'], priority: 166 },
+
+  // F. TOORU FUJISAWA (TOHRU FUJISAWA)
+  { title: 'Tuổi Trẻ Dữ Dội (Shonan Junai Gumi — GTO Tiền Truyện)', authorName: 'Tooru Fujisawa', mdId: '857a4d6b-7228-42e1-b49c-bbb50a8befdd', mpPath: '/manga/4003/shounan-junai-gumi', tags: ['Hài Hước', 'Học Đường', 'Hành Động'], priority: 167 },
+  { title: 'GTO: 14 Ngày Ở Shonan (GTO: Shonan 14 Days)', authorName: 'Tooru Fujisawa', mdId: 'ca799261-dbbb-4a27-a34f-34bc607751cd', mpPath: '/manga/1471/gto-shonan-14-days', tags: ['Hài Hước', 'Học Đường', 'Đời Thường'], priority: 168 },
+  { title: 'GTO: Thiên Đường Đã Mất (GTO: Paradise Lost)', authorName: 'Tooru Fujisawa', mdId: 'a9a71cf3-f412-4a04-8a2c-fe03ed70e35b', mpPath: '/manga/1470/gto-paradise-lost', tags: ['Hài Hước', 'Học Đường', 'Seinen'], priority: 169 },
+  { title: 'Thầy Giáo Mặt Nạ (Kamen Teacher — Tooru Fujisawa)', authorName: 'Tooru Fujisawa', mdId: '53a64af2-0025-4583-8b75-f73b8b99450b', mpPath: '/manga/6187/kamen-teacher', tags: ['Hành Động', 'Học Đường', 'Shounen'], priority: 170 },
 ];
 
 function decodeHtmlEntities(str) {
@@ -483,7 +523,7 @@ class MangaCrawlerSyncEngine {
     return this.db.mangas[slug] || null;
   }
 
-  getSyncedList({ page = 1, limit = 24, source = 'all', keyword = '', origin = 'all', status = 'all', legendsOnly = false } = {}) {
+  getSyncedList({ page = 1, limit = 24, source = 'all', keyword = '', origin = 'all', status = 'all', author = 'all', legendsOnly = false } = {}) {
     let list = Object.values(this.db.mangas);
 
     if (legendsOnly || source === 'legends') {
@@ -502,6 +542,19 @@ class MangaCrawlerSyncEngine {
     }
     if (status && status !== 'all') {
       list = list.filter((m) => m.status === status);
+    }
+    if (author && author !== 'all') {
+      const normAuthor = author.trim().toLowerCase();
+      const tokens = normAuthor.split(/\s+/).filter((t) => t.length > 1);
+      list = list.filter((m) => {
+        const authorsArr = Array.isArray(m.author) ? m.author : [m.author || ''];
+        const joined = authorsArr.join(' ').toLowerCase();
+        // Match full substring or reverse name order (e.g. "Tooru Fujisawa" vs "Fujisawa Tohru")
+        if (joined.includes(normAuthor)) return true;
+        if (normAuthor.includes('fujisawa') && joined.includes('fujisawa')) return true;
+        if (tokens.length >= 2 && tokens.every((tk) => joined.includes(tk))) return true;
+        return false;
+      });
     }
     if (keyword && keyword.trim()) {
       const q = keyword.trim().toLowerCase();
@@ -990,7 +1043,11 @@ class MangaCrawlerSyncEngine {
               status: mdData?.status || 'ongoing',
               thumb_url: proxiedThumb,
               updatedAt: new Date().toISOString(),
-              author: mdData?.authors?.length ? mdData.authors : ['Tác giả Huyền Thoại'],
+              author: target.authorName
+                ? [...new Set([target.authorName, ...(mdData?.authors || [])])]
+                : mdData?.authors?.length
+                ? mdData.authors
+                : ['Tác giả Huyền Thoại'],
               category: target.tags.map((t) => ({
                 id: t.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
                 name: t,
@@ -1356,7 +1413,20 @@ const syncEngine = new MangaCrawlerSyncEngine();
 
 if (require.main === module) {
   const mode = process.argv[2] || 'legends';
-  if (mode === 'wuxia') {
+  if (mode === 'authors') {
+    (async () => {
+      syncEngine.state.isRunning = true;
+      await syncEngine.syncLegendaryMangaCatalog(146);
+      syncEngine.state.isRunning = false;
+      syncEngine.saveDatabase();
+      const st = syncEngine.getStatus();
+      console.log('================================================================');
+      console.log(`🎉 KẾT QUẢ ĐỒNG BỘ 7 ĐẠI TÁC GIẢ (TOGASHI, INOUE, TEZUKA, TORIYAMA, HARA, URASAWA, FUJISAWA):`);
+      console.log(`   - Tổng số bộ truyện: ${st.totalMangas}`);
+      console.log(`   - Tổng số chương đã lưu: ${st.totalChapters}`);
+      console.log('================================================================');
+    })();
+  } else if (mode === 'wuxia') {
     (async () => {
       syncEngine.state.isRunning = true;
       await syncEngine.syncLegendaryMangaCatalog(119);

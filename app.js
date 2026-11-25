@@ -92,6 +92,7 @@ class MangaVerseApp {
       keyword: '',
       origin: 'all',       // 'all' | 'ja' | 'ko' | 'zh'
       status: 'all',       // 'all' | 'ongoing' | 'completed' | 'hiatus'
+      author: 'all',       // 'all' | 'Yoshihiro Togashi' | 'Takehiko Inoue' | ...
       sort: 'latestUploadedChapter', // 'latestUploadedChapter' | 'followedCount' | 'rating' | 'createdAt' | 'title'
       demographic: 'all',  // 'all' | 'shounen' | 'seinen' | 'shoujo' | 'josei'
       lang: 'vi',          // 'vi' | 'en' | 'all'
@@ -739,6 +740,7 @@ class MangaVerseApp {
     const keyword = (sp.get('keyword') || '').trim();
     const status = sp.get('status') || '';
     const origin = sp.get('origin') || '';
+    const author = (sp.get('author') || 'all').trim();
     const sort = sp.get('sort') || '';
     const source = sp.get('source') || 'all_vi';
     const rawTags = (sp.get('tags') || '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -752,6 +754,17 @@ class MangaVerseApp {
       if (status && status !== 'all') {
         filtered = filtered.filter((m) => m.status === status);
       }
+      if (author && author !== 'all') {
+        const normAuthor = author.toLowerCase();
+        const tokens = normAuthor.split(/\s+/).filter((t) => t.length > 1);
+        filtered = filtered.filter((m) => {
+          const joined = (Array.isArray(m.author) ? m.author : [m.author || '']).join(' ').toLowerCase();
+          if (joined.includes(normAuthor)) return true;
+          if (normAuthor.includes('fujisawa') && joined.includes('fujisawa')) return true;
+          if (tokens.length >= 2 && tokens.every((tk) => joined.includes(tk))) return true;
+          return false;
+        });
+      }
       if (keyword) {
         const q = keyword.toLowerCase();
         filtered = filtered.filter(
@@ -760,6 +773,18 @@ class MangaVerseApp {
       }
       return filtered;
     };
+
+    if (author && author !== 'all' && seedItems.length) {
+      const list = filterSeedItems(seedItems);
+      const offset = (page - 1) * 24;
+      return {
+        status: 'success',
+        data: {
+          items: list.slice(offset, offset + 24),
+          params: { pagination: { totalItems: list.length, totalItemsPerPage: 24, currentPage: page } },
+        },
+      };
+    }
 
     // 3A. NETTRUYEN TAB ON NETLIFY (136+ Synced NetTruyen Comics + Live /proxy-nt/* Edge Crawler)
     if (source === 'nettruyen') {
@@ -1252,6 +1277,18 @@ class MangaVerseApp {
     const kwEl = document.getElementById('adv-keyword-input');
     if (kwEl) kwEl.value = this.filters.keyword;
 
+    const authorSelect = document.getElementById('filter-author-select');
+    if (authorSelect) authorSelect.value = this.filters.author || 'all';
+    document.querySelectorAll('.author-filter-btn').forEach((btn) => {
+      const aVal = btn.getAttribute('data-author-btn');
+      const active = aVal === (this.filters.author || 'all');
+      btn.className = `author-filter-btn shrink-0 px-3 py-1 rounded-full text-xs font-bold transition ${
+        active
+          ? 'bg-brand-500 text-white shadow-sm'
+          : 'bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-brand-500'
+      }`;
+    });
+
     const demoEl = document.getElementById('adv-demographic-select');
     if (demoEl) demoEl.value = this.filters.demographic;
 
@@ -1271,6 +1308,7 @@ class MangaVerseApp {
       this.filters.keyword.trim() !== '' ||
       this.filters.origin !== 'all' ||
       this.filters.status !== 'all' ||
+      this.filters.author !== 'all' ||
       this.filters.demographic !== 'all' ||
       this.filters.lang !== 'vi' ||
       this.filters.year !== 'all' ||
@@ -1284,6 +1322,7 @@ class MangaVerseApp {
     if (this.filters.keyword.trim()) count++;
     if (this.filters.origin !== 'all') count++;
     if (this.filters.status !== 'all') count++;
+    if (this.filters.author !== 'all') count++;
     if (this.filters.demographic !== 'all') count++;
     if (this.filters.lang !== 'vi') count++;
     if (this.filters.year !== 'all') count++;
@@ -1332,6 +1371,13 @@ class MangaVerseApp {
       chips.push({
         label: statusNames[this.filters.status],
         action: `app.removeSingleFilter('status')`,
+      });
+    }
+
+    if (this.filters.author && this.filters.author !== 'all') {
+      chips.push({
+        label: `✍️ Tác giả: ${this.filters.author}`,
+        action: `app.removeSingleFilter('author')`,
       });
     }
 
@@ -1414,6 +1460,7 @@ class MangaVerseApp {
       keyword: '',
       origin: 'all',
       status: 'all',
+      author: 'all',
       demographic: 'all',
       lang: 'vi',
       year: 'all',
@@ -1443,6 +1490,7 @@ class MangaVerseApp {
       keyword: '',
       origin: 'all',
       status: 'all',
+      author: 'all',
       sort: 'latestUploadedChapter',
       demographic: 'all',
       lang: 'vi',
@@ -1633,6 +1681,7 @@ class MangaVerseApp {
           keyword: this.filters.keyword.trim(),
           origin: this.filters.origin,
           status: this.filters.status,
+          author: this.filters.author || 'all',
           demographic: this.filters.demographic,
           lang: this.filters.lang,
           year: this.filters.year,

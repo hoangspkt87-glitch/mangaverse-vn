@@ -1277,6 +1277,7 @@ exports.handler = async (event) => {
     ) {
       const keyword = (qs.keyword || '').trim();
       const origin = qs.origin || 'all';
+      const author = (qs.author || 'all').trim();
       const status = pathname.includes('hoan-thanh') ? 'completed' : qs.status || 'all';
       return jsonResponse(
         200,
@@ -1287,6 +1288,7 @@ exports.handler = async (event) => {
           keyword,
           origin,
           status,
+          author,
           legendsOnly: source === 'legends',
         })
       );
@@ -1296,12 +1298,27 @@ exports.handler = async (event) => {
       const keyword = (qs.keyword || '').trim();
       const status = qs.status || '';
       const origin = qs.origin || '';
+      const author = (qs.author || 'all').trim();
       const demographic = qs.demographic || '';
       const lang = qs.lang || 'vi';
       const year = qs.year || '';
       const sort = qs.sort || 'latestUploadedChapter';
       const tagsMode = qs.tagsMode || 'AND';
       const rawTags = (qs.tags || '').split(',').map((s) => s.trim()).filter(Boolean);
+
+      if (author && author !== 'all' && syncEngine) {
+        return jsonResponse(
+          200,
+          syncEngine.getSyncedList({
+            page,
+            limit: 24,
+            keyword,
+            origin,
+            status,
+            author,
+          })
+        );
+      }
 
       if (source === 'nettruyen') {
         let ntGenre = '';

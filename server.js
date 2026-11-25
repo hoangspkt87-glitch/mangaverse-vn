@@ -1582,6 +1582,7 @@ const server = http.createServer(async (req, res) => {
     ) {
       const keyword = (sp.get('keyword') || '').trim();
       const origin = sp.get('origin') || 'all';
+      const author = (sp.get('author') || 'all').trim();
       const status = pathname.includes('hoan-thanh') ? 'completed' : sp.get('status') || 'all';
       sendJson(
         res,
@@ -1593,6 +1594,7 @@ const server = http.createServer(async (req, res) => {
           keyword,
           origin,
           status,
+          author,
           legendsOnly: source === 'legends',
         })
       );
@@ -1604,12 +1606,29 @@ const server = http.createServer(async (req, res) => {
       const keyword = (sp.get('keyword') || '').trim();
       const status = sp.get('status') || '';
       const origin = sp.get('origin') || '';
+      const author = (sp.get('author') || 'all').trim();
       const demographic = sp.get('demographic') || '';
       const lang = sp.get('lang') || 'vi';
       const year = sp.get('year') || '';
       const sort = sp.get('sort') || 'latestUploadedChapter';
       const tagsMode = sp.get('tagsMode') || 'AND';
       const rawTags = (sp.get('tags') || '').split(',').map((s) => s.trim()).filter(Boolean);
+
+      if (author && author !== 'all') {
+        sendJson(
+          res,
+          200,
+          syncEngine.getSyncedList({
+            page,
+            limit: 24,
+            keyword,
+            origin,
+            status,
+            author,
+          })
+        );
+        return;
+      }
 
       if (source === 'nettruyen') {
         let ntGenre = '';
