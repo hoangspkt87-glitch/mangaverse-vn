@@ -1,11 +1,11 @@
 @echo off
 chcp 65001 >nul
-title MangaVerse VN v5.5 - Phat Website Truc Tiep Ra Internet (100%% NetTruyen Live)
+title MangaVerse VN v5.5 - Phat Website Truc Tiep Ra Internet (Cloudflare Tunnel)
 color 0A
 
 echo ============================================================================
 echo   🚀 MANGAVERSE VN v5.5 - PHAT TRUC TIEP RA INTERNET & DIEN THOAI WI-FI
-echo   (Chay truc tiep tren IP Viet Nam -> 100%% NetTruyen + 98,344 Chuong!)
+echo   (Chay qua Cloudflare Tunnel + IP Viet Nam -> 100%% NetTruyen & 98,344 Chuong!)
 echo ============================================================================
 echo.
 
@@ -27,11 +27,10 @@ for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr /c:"IPv4"') do (
     echo [2] LINK DOC TREN DIEN THOAI CUNG WI-FI: http://%%a:3080
 )
 echo.
-echo [*] Dang mo duong ham Internet HTTPS cong khai (localhost.run)...
-echo     Copy duong link https://....app.lhr.life ben duoi de mo tren moi thiet bi!
+echo [*] Dang mo duong ham Cloudflare Tunnel cong khai (https://....trycloudflare.com)...
 echo ============================================================================
 echo.
 
-ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -R 80:localhost:3080 nokey@localhost.run
+"%~dp0cloudflared.exe" tunnel --url http://localhost:3080
 
 pause

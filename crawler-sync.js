@@ -260,6 +260,37 @@ const LEGENDARY_MANGA_TARGETS = [
   { title: 'Nam Hào Và Thượng Phong (Nan Hao & Shang Feng)', origin: 'zh', ctId: '2296', mdId: '829fc3a7-d4f4-42e9-9032-0917083f9e0d', tags: ['Manhua', 'Hài Hước', 'Học Đường', 'Đời Thường'], priority: 116 },
   { title: 'Ma Đạo Tổ Sư (Grandmaster of Demonic Cultivation)', origin: 'zh', mdId: '6e52262f-bcd5-49c4-b93a-f4652d189844', tags: ['Manhua', 'Cổ Trang', 'Tu Tiên', 'Bí Ẩn'], priority: 117 },
   { title: 'Phong Thần Ký (Feng Shen Ji)', origin: 'zh', mdId: '01e01102-53d1-4bdf-847b-90cfe5b6415d', tags: ['Manhua', 'Thần Thoại', 'Hành Động', 'Kinh Điển'], priority: 118 },
+
+  // ==========================================================================
+  // 9. KIẾM HIỆP / VÕ HIỆP HỒNG KÔNG & KIM DUNG KINH ĐIỂN (HOÀNG PHI HỒNG, PHONG VÂN, TỨ ĐẠI DANH BỘ...)
+  // ==========================================================================
+  { title: 'Hoàng Phi Hồng — Phần 2 (Võ Hiệp Hồng Kông)', origin: 'zh', ntSlug: 'hoang-phi-hong-phan-2', tags: ['Kiếm Hiệp', 'Võ Thuật', 'Cổ Trang', 'Manhua'], priority: 119 },
+  { title: 'Hoàng Phi Hồng — Phần IV (Đại Chiến Thập Nhị Môn Phái)', origin: 'zh', ntSlug: 'hoang-phi-hong-phan-iv', tags: ['Kiếm Hiệp', 'Võ Thuật', 'Cổ Trang', 'Manhua'], priority: 120 },
+  { title: 'Phong Vân — Bộ Đôi Kinh Điển (Nhiếp Phong & Bộ Kinh Vân)', origin: 'zh', ntSlug: 'phong-van', mdId: 'ce5171fa-deab-42c9-bdeb-3f0337954bdf', tags: ['Kiếm Hiệp', 'Võ Thuật', 'Huyền Huyễn', 'Manhua'], priority: 121 },
+  { title: 'Tứ Đại Danh Bộ — Ôn Thụy An (Bản Kinh Điển)', origin: 'zh', ntSlug: 'tu-dai-danh-bo', mdId: '22c7e3f4-ef5f-4df1-b135-21575c622269', tags: ['Kiếm Hiệp', 'Trinh Thám', 'Võ Thuật', 'Manhua'], priority: 122 },
+  { title: 'Tân Tứ Đại Danh Bộ', origin: 'zh', ntSlug: 'tan-tu-dai-danh-bo', tags: ['Kiếm Hiệp', 'Trinh Thám', 'Võ Thuật', 'Manhua'], priority: 123 },
+  { title: 'Long Hổ Môn (Hoàng Ngọc Lang — Kinh Điển)', origin: 'zh', ntSlug: 'long-ho-mon', mdId: 'fb38e067-57f6-400d-a596-3ead523a62e2', tags: ['Võ Thuật', 'Hành Động', 'Giang Hồ', 'Manhua'], priority: 124 },
+  { title: 'Tân Tác Long Hổ Môn (Vương Tiểu Hổ & Thạch Hắc Long)', origin: 'zh', ntSlug: 'tan-tac-long-ho-mon', tags: ['Võ Thuật', 'Hành Động', 'Giang Hồ', 'Manhua'], priority: 125 },
+  { title: 'Cựu Tác Long Hổ Môn', origin: 'zh', ntSlug: 'cuu-tac-long-ho-mon', tags: ['Võ Thuật', 'Hành Động', 'Kinh Điển', 'Manhua'], priority: 126 },
+  { title: 'Thiên Tử Truyền Kỳ 1 — Cơ Phát Khai Chu Bản', origin: 'zh', ntSlug: 'thien-tu-truyen-ky-1-co-phat-khai-chu-ban', tags: ['Kiếm Hiệp', 'Lịch Sử', 'Huyền Huyễn', 'Manhua'], priority: 127 },
+  { title: 'Thiên Tử Truyền Kỳ 4 — Đại Đường Uy Long (Lý Thế Dân)', origin: 'zh', ntSlug: 'thien-tu-truyen-ky-4-dai-duong-uy-long', tags: ['Kiếm Hiệp', 'Lịch Sử', 'Võ Thuật', 'Manhua'], priority: 128 },
+  { title: 'Thiên Tử Truyền Kỳ 5 — Như Lai Thần Chưởng (Long Qua Nhi)', origin: 'zh', ntSlug: 'thien-tu-truyen-ky-5-nhu-lai-than-chuong', tags: ['Kiếm Hiệp', 'Võ Thuật', 'Huyền Huyễn', 'Manhua'], priority: 129 },
+  { title: 'Hỏa Phụng Liêu Nguyên (Tam Quốc Mưu Lược Đỉnh Cao)', origin: 'zh', ntSlug: 'hoa-phung-lieu-nguyen', mpPath: '/manga/4438/the-ravages-of-time', tags: ['Lịch Sử', 'Chiến Tranh', 'Mưu Lược', 'Manhua'], priority: 130 },
+  { title: 'Tây Du (Trịnh Kiện Hòa & Đặng Chí Huy)', origin: 'zh', ntSlug: 'tay-du', mpPath: '/manga/6545/xi-xing-ji', tags: ['Thần Thoại', 'Hành Động', 'Huyền Huyễn', 'Manhua'], priority: 131 },
+  { title: 'Tây Du Ký Ngoại Truyện', origin: 'zh', ntSlug: 'tay-du-ky-ngoai-truyen', tags: ['Thần Thoại', 'Hành Động', 'Manhua'], priority: 132 },
+  { title: 'Thần Điêu Đại Hiệp (Kim Dung — Dương Quá & Tiểu Long Nữ)', origin: 'zh', ntSlug: 'than-dieu-dai-hiep', tags: ['Kiếm Hiệp', 'Cổ Trang', 'Lãng Mạn', 'Manhua'], priority: 133 },
+  { title: 'Ỷ Thiên Đồ Long Ký (Kim Dung — Trương Vô Kỵ)', origin: 'zh', ntSlug: 'y-thien-do-long-ky', mdId: '10d7df68-4250-4b21-95df-6f0b51cb5d32', tags: ['Kiếm Hiệp', 'Cổ Trang', 'Võ Thuật', 'Manhua'], priority: 134 },
+  { title: 'Tiếu Ngạo Giang Hồ (Kim Dung — Lệnh Hồ Xung)', origin: 'zh', ntSlug: 'tieu-ngao-giang-ho', mdId: 'f1cd3fac-7a9b-4be3-83e4-0ab9cae7b60b', tags: ['Kiếm Hiệp', 'Cổ Trang', 'Võ Thuật', 'Manhua'], priority: 135 },
+  { title: 'Thiên Long Bát Bộ (Kim Dung — Kiều Phong & Đoàn Dự)', origin: 'zh', ntSlug: 'thien-long-bat-bo', mdId: 'cba5dadb-0d76-42b6-aab1-723355e7285d', tags: ['Kiếm Hiệp', 'Cổ Trang', 'Võ Thuật', 'Manhua'], priority: 136 },
+  { title: 'Anh Hùng Xạ Điêu (Kim Dung — Quách Tĩnh & Hoàng Dung)', origin: 'zh', ntSlug: 'anh-hung-xa-dieu', tags: ['Kiếm Hiệp', 'Cổ Trang', 'Võ Thuật', 'Manhua'], priority: 137 },
+  { title: 'Võ Thần (Ôn Nhật Lương — Bạch Võ Nam)', origin: 'zh', ntSlug: 'vo-than', tags: ['Võ Thuật', 'Hành Động', 'Khoa Học Viễn Tưởng', 'Manhua'], priority: 138 },
+  { title: 'Tiêu Nhân (Biao Ren — Đao Mã)', origin: 'zh', ntSlug: 'tieu-nhan', mpPath: '/manga/6184/biao-ren', tags: ['Kiếm Hiệp', 'Lịch Sử', 'Hành Động', 'Manhua'], priority: 139 },
+  { title: 'Thiết Tướng Tung Hoành (Lôi Tổ)', origin: 'zh', ntSlug: 'thiet-tuong-tung-hoanh', tags: ['Kiếm Hiệp', 'Võ Thuật', 'Huyền Huyễn', 'Manhua'], priority: 140 },
+  { title: 'Sơn Hải Nghịch Chiến (Khâu Phúc Long)', origin: 'zh', ntSlug: 'son-hai-nghich-chien', tags: ['Huyền Huyễn', 'Thần Thoại', 'Hành Động', 'Manhua'], priority: 141 },
+  { title: 'Hiệp Khách Giang Hồ (Hàn Bảo Quân — Đàm Hoa Liên)', origin: 'ko', ntSlug: 'hiep-khach-giang-ho', tags: ['Kiếm Hiệp', 'Hài Hước', 'Võ Thuật', 'Manhwa'], priority: 142 },
+  { title: 'Anh Hùng Vô Lệ (Cổ Long)', origin: 'zh', ntSlug: 'anh-hung-vo-le', tags: ['Kiếm Hiệp', 'Cổ Trang', 'Võ Thuật', 'Manhua'], priority: 143 },
+  { title: 'Cửu Long Thành Trại (City of Darkness)', origin: 'zh', mdId: 'cbe80ad5-a14d-45cc-9b06-f80cb43069d8', mpPath: '/manga/789/city-of-darkness', tags: ['Võ Thuật', 'Giang Hồ', 'Hành Động', 'Manhua'], priority: 144 },
+  { title: 'Thiết Huyết Giang Hồ (Blood and Steel)', origin: 'zh', mdId: '66400137-fce8-4240-8a7c-8b25624b49a6', mpPath: '/manga/556/blood-and-steel', tags: ['Kiếm Hiệp', 'Võ Thuật', 'Hành Động', 'Manhua'], priority: 145 },
 ];
 
 function decodeHtmlEntities(str) {
@@ -402,7 +433,7 @@ class MangaCrawlerSyncEngine {
         totalMangas: this.db.totalMangas,
         totalChapters: this.db.totalChapters,
         sourceCounts: this.db.sourceCounts,
-        items: mangaList.slice(0, 500).map((m) => ({
+        items: mangaList.slice(0, 600).map((m) => ({
           _id: m._id,
           slug: m.slug,
           isLegend: !!m.isLegend,
@@ -804,8 +835,9 @@ class MangaCrawlerSyncEngine {
       }
     }
 
-    const BATCH_SIZE = 4;
+    const BATCH_SIZE = 2;
     for (let i = 0; i < targets.length; i += BATCH_SIZE) {
+      if (i > 0) await new Promise((r) => setTimeout(r, 450));
       const batch = targets.slice(i, i + BATCH_SIZE);
       await Promise.allSettled(
         batch.map(async (target) => {
@@ -1324,7 +1356,20 @@ const syncEngine = new MangaCrawlerSyncEngine();
 
 if (require.main === module) {
   const mode = process.argv[2] || 'legends';
-  if (mode === 'nettruyen-only') {
+  if (mode === 'wuxia') {
+    (async () => {
+      syncEngine.state.isRunning = true;
+      await syncEngine.syncLegendaryMangaCatalog(119);
+      syncEngine.state.isRunning = false;
+      syncEngine.saveDatabase();
+      const st = syncEngine.getStatus();
+      console.log('================================================================');
+      console.log(`🎉 KẾT QUẢ ĐỒNG BỘ HOÀNG PHI HỒNG • PHONG VÂN • TỨ ĐẠI DANH BỘ & KIẾM HIỆP:`);
+      console.log(`   - Tổng số bộ truyện: ${st.totalMangas}`);
+      console.log(`   - Tổng số chương đã lưu: ${st.totalChapters}`);
+      console.log('================================================================');
+    })();
+  } else if (mode === 'nettruyen-only') {
     (async () => {
       await syncEngine.syncNetTruyenPage(`${NETTRUYEN_BASE}/`, 'NetTruyen Trang Chủ Mới Cập Nhật');
       syncEngine.saveDatabase();
